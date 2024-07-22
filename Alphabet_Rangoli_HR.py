@@ -1,3 +1,8 @@
+# IMPROVEMENTS
+# DONE print from list:
+#   instead of giving instructions for top and bot of rangoli, generate list where elements in list represent lines of rangoli
+#   [list comp to generate top of rangoli where loop stops when first/last element in str is abc != '-', list comp to generate bot of rangoli]
+
 def print_rangoli(size):
     
     # reversed list of usable abc characters in rangoli
@@ -29,7 +34,27 @@ def print_rangoli(size):
         prin = prin + prin[:-1][::-1]
         print('-'.join(prin).center(w, '-'))
 
-for x in range(1,27):
-    print(f'RANGOLI SIZE {x}')
-    print_rangoli(x)
-    print()
+def print_rangoli_LC(size):
+    # reversed list of usable abc characters in rangoli
+    abc = [chr(i) for i in range(97, 97+size)]
+    abc.reverse()
+    len_abc = len(abc)
+
+    # width of rangoli
+    w = size + (size-1)
+    w += (w-1)
+
+    # LC (what you want, from where to get data, condition)
+    rangoli_top = [
+        '-'.join(abc[:i+1] + abc[:i+1][:-1][::-1]).center(w, '-') 
+        for i in range(len_abc) 
+        ]
+    rangoli_bot = [
+        '-'.join(abc[:len(abc)-i-1] + abc[:len(abc)-i-1][:-1][::-1]).center(w, '-') 
+        for i in range(len_abc-1)
+        ]
+    rangoli = rangoli_top + rangoli_bot
+    
+    for line in rangoli:
+        print(line)
+
