@@ -49,12 +49,18 @@ def print_rangoli_LC(size):
         '-'.join(abc[:i+1] + abc[:i+1][:-1][::-1]).center(w, '-') 
         for i in range(len_abc) 
         ]
-    rangoli_bot = [
-        '-'.join(abc[:len(abc)-i-1] + abc[:len(abc)-i-1][:-1][::-1]).center(w, '-') 
-        for i in range(len_abc-1)
-        ]
-    rangoli = rangoli_top + rangoli_bot
+    # rangoli_bot = [
+    #     '-'.join(abc[:len(abc)-i-1] + abc[:len(abc)-i-1][:-1][::-1]).center(w, '-') 
+    #     for i in range(len_abc-1)
+    #     ]
+    # rangoli = rangoli_top + rangoli_bot
     
-    for line in rangoli:
+    # for line in rangoli:
+    #     print(line)
+
+    for line in rangoli_top: # print top
+        print(line)
+    for line in reversed(rangoli_top[:-1]):  # reverse order excluding the last line
         print(line)
 
+print_rangoli_LC(5)
